@@ -1,5 +1,24 @@
 @font-color: #333;
 
+@header-height: 62px;
+@header-width: 640px;
+
+header {
+  position: fixed;
+  margin: 0px auto;
+  width: @header-width;
+  height: @header-height;
+  z-index: 100;
+}
+
+header > div{
+  display: inline-block;
+}
+
+.header-bars {
+}
+
+
 body {
   color: @font-color;
 }
