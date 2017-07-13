@@ -1,6 +1,11 @@
+require('bootstrap');
 require('../less/sub.less');
 require('./sub-footer');
 
-$('.goto-main').on('click', function() {
+$('.header-title').on('click', function() {
     location.href = 'index.html';
+});
+
+$('.carousel').carousel({
+    interval: false
 });
