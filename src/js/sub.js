@@ -6,6 +6,7 @@ require('./sub-footer');
 var URLSearchParams = require('url-search-params');
 var params = new URLSearchParams(location.search);
 var theresId = params.get('id');
+var moment = require('moment');
 
 try {
     var model = require('./model/sub/' + theresId);
@@ -28,6 +29,45 @@ $('.sub-box-info-day').html('주문기간 :' + model.orderDays);
 var schedulesTemplate = require('../template/sub/schedule.hbs');
 var schedulesHtml = schedulesTemplate(model);
 $('.sub-box-info-items').html('배송예정일' + schedulesHtml);
+$('.sub-on-order-person').html(model.order + '명 주문중');
+
+var nowHtml = moment().format('(MM/DD hh:mm)');
+$('.sub-on-order-day').html(nowHtml);
+
+function productInfo() {
+    var productInfos = model.productInfo;
+    $('.sub-select-detail').empty();
+    for(var i=0; i < productInfos.length; i++) {
+        var html = '<div>' + productInfos[i].title + '</div>' + productInfos[i].value;
+        $('.sub-select-detail').append(html);
+    }
+}
+productInfo();
+
+function orderLimit() {
+    var str = String(model.orderDays);
+    var n = str.indexOf('~');
+    var dot = str.indexOf('.', n);
+    var year = Number(str.substring(n+2, dot));
+    n = dot+1;
+    var dot = str.indexOf('.', n);
+    var month = Number(str.substring(n, dot));
+    n = dot+1;
+    var day = Number(str.substring(n, n+2).trim());
+
+    var a = moment([year, month-1, day]);
+    // 한 달 추가되서 나온다 이해할 수 없다.
+    var b = moment();
+
+    var result = a.diff(b, 'days');
+    if(result <= 0) {
+        $('.sub-detail-limit').text('주문종료');
+    }
+    else {
+        $('.sub-detail-limit').text('주문종료 ' + result + '일 남음');
+    }
+}
+orderLimit();
 
 $('.header-title').on('click', function() {
     location.href = 'index.html';

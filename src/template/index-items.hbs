@@ -1,0 +1,28 @@
+<div class="mk-content">
+    <div class="mk-content-img" id="{{id}}">
+        <img src="{{img}}">
+    </div>
+    <div class="mk-content-text">
+        <div class="mk-content-order-cnt">
+            {{format-person order}}<br>
+            주문중
+        </div>
+        <div class="mk-content-title">
+            {{title}}
+        </div>
+        <div class="mk-content-body" id="{{id}}">
+            {{~content~}}
+            <span class="mk-content-read-more">read more</span></div>
+        <div class="mk-content-like">
+            <ul class="mk-content-like-items">
+                <li>
+                    <i class="fa fa-heart-o"></i>
+                    {{format-person like}}
+                </li>
+                <li>
+                    <i class="fa fa-share"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

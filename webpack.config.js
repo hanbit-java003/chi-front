@@ -34,10 +34,14 @@ module.exports = {
                 }, {
                     loader: 'less-loader'
                 }]
-            })
+            }),
+            exclude: /node_modules/
         }, {
             test: /\.hbs$/,
-            loader: 'handlebars-loader'
+            loader: 'handlebars-loader',
+            query: {
+                helperDirs: path.resolve(__dirname, 'src/template/helpers')
+            }
         }]
     },
     devServer: {
