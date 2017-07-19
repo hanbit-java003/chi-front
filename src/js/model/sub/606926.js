@@ -1,13 +1,13 @@
 module.exports = {
-    id: '606926',
-    imgs: {
-        i1: './img/606926/soap1.jpg',
-        i2: './img/606926/soap2.jpg',
-        i3: './img/606926/soap3.jpg'
-    },
+    id: 606926,
+    imgs: [
+        {img: './img/606926/soap1.jpg'},
+        {img: './img/606926/soap2.jpg'},
+        {img: './img/606926/soap3.jpg'}
+    ],
     name: '휘게 올인원 수소비누',
-    price: '12,000',
-    order: 831,
+    price: 12000,
+    orders: 831,
     orderDays: '2017.7.07 오전 10시 ~ 2017.7.18 오후 05시',
     orderSchedule: [ // [대괄호 안하면 인식 안함
         {schedule: '배송예정일 : 7월 5주경 배송시작'}

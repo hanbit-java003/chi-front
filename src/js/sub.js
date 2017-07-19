@@ -14,11 +14,18 @@ try {
 catch (e) {
     var model = require('./model/sub/605811');
 }
-var carouselImgs = $('.carousel-inner').find('img');
+
 // 태그 src에는 url() 안들어간다. - 지움
-$(carouselImgs[0]).attr('src', model.imgs.i1);
-$(carouselImgs[1]).attr('src', model.imgs.i2);
-$(carouselImgs[2]).attr('src', model.imgs.i3);
+function initImgs() {
+    var carouselImgs = $('.carousel-inner').find('img');
+    var imgs = model.imgs;
+    for(var i=0; i < carouselImgs.length; i++) {
+        $(carouselImgs[i]).attr('src', imgs[i].img);
+    }
+}
+
+initImgs();
+
 $('.sub-detail-title').html(model.name);
 $('.sub-detail-price').html(model.price + '원');
 $('.sub-box-info-day').html('주문기간 :' + model.orderDays);
@@ -29,7 +36,7 @@ $('.sub-box-info-day').html('주문기간 :' + model.orderDays);
 var schedulesTemplate = require('../template/sub/schedule.hbs');
 var schedulesHtml = schedulesTemplate(model);
 $('.sub-box-info-items').html('배송예정일' + schedulesHtml);
-$('.sub-on-order-person').html(model.order + '명 주문중');
+$('.sub-on-order-person').html(model.orders + '명 주문중');
 
 var nowHtml = moment().format('(MM/DD hh:mm)');
 $('.sub-on-order-day').html(nowHtml);

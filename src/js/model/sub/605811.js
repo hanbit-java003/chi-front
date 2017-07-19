@@ -1,13 +1,13 @@
 module.exports = {
-    id: '605811',
-    imgs: {
-        i1: './img/605811/fan1.jpg',
-        i2: './img/605811/fan2.jpg',
-        i3: './img/605811/fan3.jpg'
-    },
+    id: 605811,
+    imgs: [
+        {img: './img/605811/fan1.jpg'},
+        {img: './img/605811/fan2.jpg'},
+        {img: './img/605811/fan3.jpg'}
+    ],
     name: '17년형 리모컨 Aero9 프리미엄 써큘레이터',
-    price: '73,000',
-    order: 128,
+    price: 73000,
+    orders: 128,
     orderDays: '2017.7.10 오후 05시 ~ 2017.7.25 오후 05시',
     orderSchedule: [ // [대괄호 안하면 인식 안함
         {schedule: '- 17.7.10 ~ 17.7.12 까지 주문 고객 : 7월 14일 배송 예정'},
