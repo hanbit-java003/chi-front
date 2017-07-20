@@ -48,7 +48,7 @@ module.exports = {
         contentBase: './dist',
         port: port.web,
         proxy: {
-            '/api': 'http://localhost:' + port.was
+            '/chi_makers/api': 'http://localhost:' + port.was
         }
     },
     plugins: utils.getPlugins(pages)

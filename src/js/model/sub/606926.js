@@ -9,10 +9,10 @@ module.exports = {
     price: 12000,
     orders: 831,
     orderDays: '2017.7.07 오전 10시 ~ 2017.7.18 오후 05시',
-    orderSchedule: [ // [대괄호 안하면 인식 안함
+    schedules: [ // [대괄호 안하면 인식 안함
         {schedule: '배송예정일 : 7월 5주경 배송시작'}
     ],
-    productInfo: [{
+    infos: [{
         title: '품명 및 모델명',
         value: '휘게 올인원 수소비누'
     },{

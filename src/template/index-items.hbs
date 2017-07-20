@@ -1,10 +1,12 @@
 <div class="mk-content">
     <div class="mk-content-img" id="{{id}}">
+    {{#each imgs ~}}
         <img src="{{img}}">
+    {{~/each}}
     </div>
     <div class="mk-content-text">
         <div class="mk-content-order-cnt">
-            {{format-person order}}<br>
+            {{format-person orders}}<br>
             주문중
         </div>
         <div class="mk-content-title">
@@ -17,7 +19,7 @@
             <ul class="mk-content-like-items">
                 <li>
                     <i class="fa fa-heart-o"></i>
-                    {{format-person like}}
+                    {{format-person likes}}
                 </li>
                 <li>
                     <i class="fa fa-share"></i>
