@@ -9,7 +9,8 @@ var theresId = params.get('id');
 var moment = require('moment');
 
 $.ajax({
-    url: '/chi_makers/api/makers/' + theresId,
+    url: '/chi_makers/api/makers/detail?id=' + theresId,
+    method: 'GET',
     success: function (result) {
         initMakers(result);
     }

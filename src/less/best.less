@@ -16,3 +16,79 @@
   font-size: 14px;
 
 }
+
+.bt-contents {
+  padding-top: 10px;
+  background-color: #e8e8e8;
+}
+
+.bt-content {
+  position: relative;
+  width: @main-width;
+  height: 420px;
+  cursor: pointer;
+}
+
+.bt-content:nth-child(n+2) {
+  margin-top: 17px;
+}
+
+.bt-rank {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 23px;
+  height: 23px;
+  background-color: rgba(0,0,0,.3);
+  text-align: center;
+  color: #ffffff;
+}
+
+.bt-content-bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: @main-width;
+  height: 60px;
+  padding: 10px 75px 0px 12px;
+  background-color: rgba(0, 0, 0, .56);
+}
+
+.bt-content-bottom-title {
+  overflow: hidden;
+  margin-bottom: 4px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.bt-content-bottom-order {
+  overflow: hidden;
+  padding-left: 1px;
+  font-size: 12px;
+  color: #b2b2b2;
+}
+
+.bt-content-bottom-order > i {
+  margin-right: 6px;
+  vertical-align: top;
+}
+
+.bt-content-bottom-like {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 75px;
+  height: 60px;
+  font-size: 10px;
+  line-height: 22px;
+  color: #a6a6a6;
+  text-align: center;
+}
+
+.bt-content-bottom-like > i {
+  display: block;
+  width: 25px;
+  height: 22px;
+  margin: 8px auto 0;
+  font-size: 25px;
+}
