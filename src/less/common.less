@@ -35,6 +35,105 @@ header {
   font-size: 12px;
 }
 
+.mk-member-layer {
+  position: fixed;
+  top: 0px;
+  left: -188px;
+  width: 188px;
+  height: 100%;
+  background: #fcfcfc;
+  z-index: 2500;
+  overflow: auto;
+  font-size: 0px;
+}
+
+.mk-member-title {
+  margin-bottom: 2px;
+  background: #333;
+  height: 50px;
+  text-indent: 10px;
+  line-height: 50px;
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+.mk-member-title > span {
+  font-size: 10px;
+}
+
+.mk-member-link {
+  padding: 0px 10px;
+  margin: 0px;
+}
+
+.mk-member-link > li {
+  margin: 0px;
+  width: 151px;
+  height: 63px;
+  border-bottom: solid 2px #333;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 63px;
+}
+
+.mk-member-link > li:nth-child(n+4) {
+  height: 51px;
+  font-size: 15px;
+  font-weight: normal;
+  border-bottom: solid 1px #333;
+}
+
+.mk-member-btn-all {
+  margin: 40px 10px 0px;
+  width: 151px;
+  height: 51px;
+  border: solid 3px #474747;
+  font-size: 15px;
+  font-weight: bold;
+  color: #4c4c4c;
+  text-align: center;
+  line-height: 51px;
+}
+
+.mk-member-btn-qna {
+  margin: 15px 10px 15px;
+  width: 151px;
+  height: 51px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #3d3d3d;
+  color: #fff;
+  text-align: center;
+  line-height: 51px;
+}
+
+.mk-member-icon > li {
+  display: inline-block;
+  text-align: center;
+  margin-left: 18px;
+  line-height: 33px;
+  font-size: 15px;
+  width: 33px;
+  height: 33px;
+  border-radius: 16px;
+  background-color: #9a9a9a;
+  color: #ffffff;
+}
+
+.dark-layer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.overlay-layer {
+  z-index: 2000;
+}
+
 body {
   color: @main-color;
 }
