@@ -22,6 +22,9 @@ const pages = [{
 }, {
     html: 'admin/makers-list',
     script: 'admin/makers-list',
+}, {
+    html: 'admin/makers-info-edit',
+    script: 'admin/makers-info-edit',
 }];
 
 module.exports = {

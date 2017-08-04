@@ -22,12 +22,11 @@ function mkSetList(makers) {
 
     $('.mk-item-list').html(mkHtml);
 
-    // item click
-    // $('.hta-there-list > li').on('click', function() {
-    //     var thereId = $(this).attr('there-id');
-    //
-    //     location.href = './there-info-edit.html?id=' + thereId;
-    // });
+    $('.mk-item-list > li').on('click', function() {
+        var mkId = $(this).attr('mk-id');
+
+        location.href = './makers-info-edit.html?id=' + mkId;
+    });
 }
 
 $('.dropdown-menu > li').on('click', function () {
