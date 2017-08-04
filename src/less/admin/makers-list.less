@@ -1,0 +1,113 @@
+@import 'common.less';
+
+#mk-title {
+  margin: 5px 0px 10px 10px;
+  font-size: 30px;
+  color: #299923;
+}
+
+.mk-width-line {
+  margin: 0px 2px;
+  height: 1px;
+  border: solid 1px #60ff6a;
+}
+
+#mk-search-form {
+  position: relative;
+  margin-top: 10px;
+}
+
+#mk-dropdown {
+  position: relative;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+#mk-dropdown > button {
+  width: 100px;
+  text-align: left;
+}
+
+.caret {
+  position: absolute;
+  top: 14px;
+  right: 7px;
+}
+
+.dropdown-menu {
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu > li:hover {
+  background-color: #cdcdcd;
+}
+
+#mk-search {
+  display: inline-table;
+  vertical-align: top;
+  margin-left: 20px;
+  max-width: 400px;
+}
+
+.mk-btn-item-insert {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+.mk-item-list {
+  margin-top: 10px;
+}
+
+@mk-item-card-height: 100px;
+
+.mk-item-list > li {
+  position: relative;
+  display: inline-block;
+  margin: 0px 0px 10px 10px;
+  width: 320px;
+  height: 120px;
+  background-color: #1b9911;
+}
+
+.mk-item-img {
+  margin: 10px;
+  display: inline-block;
+  width: @mk-item-card-height;
+  height: @mk-item-card-height;
+  background-size: cover;
+  background-position: 50% 50%;
+  vertical-align: top;
+}
+
+.mk-item-text {
+  display: inline-block;
+}
+
+.mk-item-title {
+  margin-top: 10px;
+  width: 180px;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.mk-item-name {
+  width: 180px;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.mk-item-properties {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.mk-item-properties > li {
+  display: inline-block;
+  padding-left: 10px;
+}

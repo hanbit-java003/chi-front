@@ -1,0 +1,47 @@
+html {
+  height: 100%;
+}
+
+@menu-width: 180px;
+
+body {
+  padding-left: @menu-width;
+  background-color: #31312d;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-menu {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: @menu-width;
+  height: 100%;
+  background-color: #4b4c57;
+}
+
+.hta-logo {
+  color: #46c625;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 200%;
+  cursor: pointer;
+}
+
+.hta-menu-group {
+  text-align: center;
+  font-size: 20px;
+  background-color: #46c625;
+  color: #2023ff;
+}
+
+.hta-menu-group.active {
+  background-color: #ffef60;
+  color: #ff2321;
+  font-weight: bold;
+}

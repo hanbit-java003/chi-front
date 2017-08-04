@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{> ../../template/admin/menu makers-list="true"}}
+<div id="mk-title">제품 관리 페이지</div>
+<div class="mk-width-line"></div>
+<section id="mk-search-form">
+    <div id="mk-dropdown" class="btn-group">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mk-dropdown-name">정렬</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>등록순</li>
+            <li>주문량순</li>
+            <li>좋아요순</li>
+        </ul>
+    </div>
+    <div id="mk-search" class="input-group">
+        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search fa-flip-horizontal"></i></span>
+        <input id="mk-search-input" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <button type="button" class="mk-btn-item-insert btn btn-primary">새 제품 추가</button>
+</section>
+<section>
+    <ul class="mk-item-list">
+    </ul>
+</section>
+</body>
+</html>

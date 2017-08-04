@@ -27,8 +27,11 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "handlebars": "^4.0.10",
-    "moment": "^2.18.1",
+    "hangul-js": "^0.2.4",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "lodash-move": "^1.1.1",
+    "moment": "^2.18.1",
     "url-search-params": "^0.9.0"
   }
 }

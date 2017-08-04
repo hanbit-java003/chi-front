@@ -1,0 +1,21 @@
+{{#each this}}
+{{~#unless hidden~}}
+<li mk-id="{{id}}">
+    <div class="mk-item-img" style="background-image: url(.{{img}})"></div>
+    <div class="mk-item-text">
+        <div class="mk-item-title">{{title}} ({{id}})</div>
+        <div class="mk-item-name">{{name}}</div>
+        <ul class="mk-item-properties">
+            <li>
+                <i class="fa fa-heart"></i>
+                {{likes}}
+            </li>
+            <li>
+                <i class="fa fa-first-order"></i>
+                {{orders}}
+            </li>
+        </ul>
+    </div>
+</li>
+{{~/unless~}}
+{{/each}}
