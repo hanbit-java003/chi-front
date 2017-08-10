@@ -1,5 +1,5 @@
 $('.header-title').on('click', function () {
-    location.href = 'http://localhost:89/index.html'
+    location.href = 'http://localhost:89/admin/'
 });
 
 $('.mk-menu-items > li').on('click', function () {

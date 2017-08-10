@@ -57,6 +57,10 @@ $('.dropdown-menu > li').on('click', function () {
     }
 });
 
+$('.mk-btn-item-insert').on('click', function () {
+    location.href = './makers-info-edit.html';
+});
+
 /************** search **************/
 var searchTimer;
 var lastSearchTime = _.now();

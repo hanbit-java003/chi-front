@@ -6,93 +6,99 @@
 </head>
 <body>
     {{> ../../template/admin/menu makers-list="true"}}
-    <div id="mk-title">제품 관리 상세 페이지</div>
-    <div class="mk-width-line"></div>
-    <div class="form-group">
-        <label for="mk-item-num">제품 번호</label>
-        <div id="mk-item-num" class="form-control">605811</div>
-    </div>
-    <div class="form-group">
-        <label for="mk-item-title">메인 제목</label>
-        <input id="mk-item-title" class="form-control" type="text" placeholder="메인페이지에 들어갈 제목">
-    </div>
-    <div class="form-group">
-        <label for="mk-item-name">제품 이름</label>
-        <input id="mk-item-name" class="form-control" type="text" placeholder="제품 이름">
-    </div>
-    <div class="form-group">
-        <label for="mk-item-content">설명</label>
-        <textarea id="mk-item-content" class="form-control" placeholder="제품 설명"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="mk-item-orderDays">주문날짜</label>
-        <input id="mk-item-orderDays" class="form-control" type="text"  placeholder="0000.0.00 오후 00시 ~ 0000.0.0 오후 00시">
-    </div>
-    <div class="form-group">
-        <label for="mk-item-price">가격</label>
-        <input id="mk-item-price" class="form-control" type="number" placeholder="숫자만 입력">
-    </div>
-    <div class="form-group">
-        <label for="mk-item-likes">좋아요수</label>
-        <input id="mk-item-likes" class="form-control" type="number" placeholder="숫자만 입력">
-    </div>
-    <div class="form-group">
-        <label for="mk-item-orders">주문수</label>
-        <input id="mk-item-orders" class="form-control" type="number" placeholder="숫자만 입력">
-    </div>
-    <div class="form-group">
-        <label for="mk-imgs-preview">메인이미지 + 슬라이드 이미지</label>
-        <input type="file" id="mk-imgs-preview" accept="image/*">
-        <button for="mk-imgs-preview" class="hta-file-select btn btn-default">파일 3개 이상 선택</button>
-        <ul id="mk-imgs-preview">
-            <li class="mk-img-preview"></li>
-            <li class="mk-img-preview"></li>
-            <li class="mk-img-preview"></li>
-        </ul>
-    </div>
-    <div class="hta-tab">
-        <ul class="hta-tab-header">
-            <li tab-id="info" class="active">
-                상세정보
-                <button class="hta-add-row">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </li>
-            <li tab-id="schedule">
-                배송 스케줄
-                <button class="hta-add-row">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </li>
-        </ul>
-        <ul class="hta-tab-contents">
-            <li tab-id="info" class="active">
-                <table class="hta-area-info table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>제목</th>
-                            <th>내용</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </li>
-            <li tab-id="schedule">
-                <table class="hta-schedule table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>제목</th>
-                            <th>내용</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </li>
-        </ul>
+    <div class="admin-contents">
+        <div id="mk-title">제품 관리 상세 페이지</div>
+        <div class="mk-width-line"></div>
+        <div class="form-group">
+            <label for="mk-item-id">제품 번호</label>
+            <div id="mk-item-id" class="form-control">자동으로 입력됩니다.</div>
+        </div>
+        <div class="form-group">
+            <label for="mk-item-title">메인 제목</label>
+            <input id="mk-item-title" class="form-control" type="text" placeholder="메인페이지에 들어갈 제목">
+        </div>
+        <div class="form-group">
+            <label for="mk-item-name">제품 이름</label>
+            <input id="mk-item-name" class="form-control" type="text" placeholder="제품 이름">
+        </div>
+        <div class="form-group">
+            <label for="mk-item-content">설명</label>
+            <textarea id="mk-item-content" class="form-control" placeholder="제품 설명"></textarea>
+        </div>
+        <div class="form-group sm">
+            <label for="mk-item-orderdays">주문날짜</label>
+            <input id="mk-item-orderdays" class="form-control" type="text"  placeholder="0000.0.00 오후 00시 ~ 0000.0.0 오후 00시">
+        </div>
+        <div class="form-group sm">
+            <label for="mk-item-price">가격</label>
+            <input id="mk-item-price" class="form-control" type="number" placeholder="숫자만 입력">
+        </div>
+        <div class="form-group sm">
+            <label for="mk-item-likes">좋아요수</label>
+            <input id="mk-item-likes" class="form-control" type="number" placeholder="숫자만 입력">
+        </div>
+        <div class="form-group sm">
+            <label for="mk-item-orders">주문수</label>
+            <input id="mk-item-orders" class="form-control" type="number" placeholder="숫자만 입력">
+        </div>
+        <div class="form-group">
+            <label>메인이미지 + 슬라이드 이미지</label>
+            <button for="hta-mk-imgs" class="mk-btn-file btn btn-default">파일 3개 이상 선택</button>
+            <input multiple="multiple" name="filename[]" type="file" id="hta-mk-imgs" accept="image/*">
+        </div>
+        <div class="form-group">
+            <ul id="hta-mk-imgs-preview">
+                <li></li>
+            </ul>
+        </div>
+        <div class="hta-tab">
+            <ul class="hta-tab-header">
+                <li tab-id="info" class="active">
+                    상세정보
+                    <button class="hta-add-row">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </li>
+                <li tab-id="schedule">
+                    배송 스케줄
+                    <button class="hta-add-row">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </li>
+            </ul>
+            <ul class="hta-tab-contents">
+                <li tab-id="info" class="active">
+                    <table class="hta-mk-info table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>제목</th>
+                                <th>내용</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </li>
+                <li tab-id="schedule">
+                    <table class="hta-mk-schedule table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>스케줄</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <div class="hta-buttons">
+            <button class="hta-save btn btn-success">저장</button>
+            <button class="hta-delete btn btn-danger">삭제</button>
+            <button class="hta-cancel btn btn-default">취소</button>
+        </div>
     </div>
 </body>
 </html>

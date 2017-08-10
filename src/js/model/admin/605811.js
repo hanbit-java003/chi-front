@@ -7,7 +7,7 @@ module.exports = [{
     orders: 758
 },{
     id: 606811,
-    img: '../img/605811/fan.jpg',
+    img: '../img/605811/605811-0.jpg',
     title: '더위는 식혀주고, 전기세는 내려주는',
     name: '17년형 리모컨 Aero9 프리미엄 써큘레이터',
     likes: 982,

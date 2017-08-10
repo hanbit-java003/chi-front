@@ -1,9 +1,9 @@
 module.exports = {
     id: 605811,
     imgs: [
-        {img: './img/605811/fan1.jpg'},
-        {img: './img/605811/fan2.jpg'},
-        {img: './img/605811/fan3.jpg'}
+        {img: './img/605811/605811-1.jpg'},
+        {img: './img/605811/605811-2.jpg'},
+        {img: './img/605811/605811-3.jpg'}
     ],
     name: '17년형 리모컨 Aero9 프리미엄 써큘레이터',
     price: 73000,

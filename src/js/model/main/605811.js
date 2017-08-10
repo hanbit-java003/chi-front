@@ -1,6 +1,6 @@
 module.exports = {
     id: 606811,
-    img: './img/605811/fan.jpg',
+    img: './img/605811/605811-0.jpg',
     order: 128,
     title: '더위는 식혀주고, 전기세는 내려주는',
     content: '때 이른 더위를 맞이하고 보니, 올여름 더위는 대단하겠구나' +
