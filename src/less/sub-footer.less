@@ -55,6 +55,7 @@
 }
 
 .sub-order-text {
+  position: relative;
   padding: 0px 0px 12px 10px;
   margin: 0px auto;
   width: 640px;
@@ -134,4 +135,23 @@
   color: #fff;
   font-weight: bold;
   cursor: pointer;
+}
+
+.sub-order-option-list {
+  position: fixed;
+  display: none;
+  background-color: #ffffff;
+  top: 50%;
+  left: calc(~'50%' - 100px);
+  z-index: 2000;
+  margin-top: 0px;
+  height: 0px;
+  width: 200px;
+}
+
+.sub-order-option-list > li {
+  overflow: hidden;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px;
+  font-size: 15px;
 }

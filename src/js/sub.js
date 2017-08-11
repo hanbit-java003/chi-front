@@ -2,6 +2,7 @@ require('bootstrap');
 require('../less/sub.less');
 require('./sub-footer');
 
+var common = require('./common');
 // url-serch-params 쓰고 싶으면 가져 와야한다.
 var URLSearchParams = require('url-search-params');
 var params = new URLSearchParams(location.search);
@@ -31,7 +32,7 @@ function initMakers(model) {
     }
 
     $('.sub-detail-title').html(model.name);
-    $('.sub-detail-price').html(model.price + '원');
+    $('.sub-detail-price').html(model.price.toLocaleString() + '원');
     $('.sub-box-info-day').html('주문기간 :' + model.orderDays);
 
     var schedulesTemplate = require('../template/sub/schedule.hbs');
@@ -45,7 +46,7 @@ function initMakers(model) {
     var productInfos = model.infos;
     $('.sub-select-detail').empty();
     for(var i=0; i < productInfos.length; i++) {
-        var html = '<div>' + productInfos[i].title + '</div>' + productInfos[i].value;
+        var html = '<div>' + productInfos[i].title + '</div>' + productInfos[i].value.replace('\n\n', '<br>' );
         $('.sub-select-detail').append(html);
     }
 
@@ -131,5 +132,3 @@ $('.header-title').on('click', function() {
 $('.carousel').carousel({
     interval: false
 });
-
-

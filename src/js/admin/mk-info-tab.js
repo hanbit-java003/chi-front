@@ -21,7 +21,7 @@ function setInfos() {
 
     for (var i=0; i<infos.length; i++) {
         infos[i].no = i + 1;
-
+        infos[i].value = infos[i].value.replace(/\n/g, '<br>'); // replace는 1개만 바꾼다. - 표현식 사용하면 다 바뀜
         var html = template(infos[i]);
 
         $('.hta-mk-info tbody').append(html);
@@ -38,10 +38,16 @@ function addAreaInfoEvents() {
         var row = $(this);
         var rowIndex = $(this).index();
         var info = infos[rowIndex];
+        info.value = info.value.replace(/<br>/g, '\n');
         var template = require('../../template/admin/mk-info-edit.hbs');
         var html = template(info);
 
         row.replaceWith(html);
+
+        $('.hta-mk-info-value').on('keydown keyup', function () {
+            $(this).height(1).height($(this).prop('scrollHeight')+12);
+        }); // 높이를 1로 줄였다가 -> 크기+12만큼 늘린다. 좋은 소스는 아님
+
 
         addBtnRowEvents();
     });
@@ -56,7 +62,7 @@ function addBtnRowEvents() {
 
         if ($(this).hasClass('hta-apply-row')) {
             info.title = row.find('.hta-mk-info-title').val().trim();
-            info.value = row.find('.hta-mk-info-value').val().trim();
+            info.value = row.find('.hta-mk-info-value').val().replace(/\n/g, '<br>').trim();
         }
         else if ($(this).hasClass('hta-remove-row')) {
             _.remove(infos, function(value, index) {

@@ -84,7 +84,8 @@ $('.hta-save').on('click', function() {
     model.name = $('#mk-item-name').val().trim();
     model.content = $('#mk-item-content').val().trim();
     model.orderDays = $('#mk-item-orderdays').val().trim();
-    model.price = $('#mk-item-likes').val().trim();
+    model.price = $('#mk-item-price').val().trim();
+    model.likes = $('#mk-item-likes').val().trim();
     model.orders = $('#mk-item-orders').val().trim();
 
     if (!model.title) {
