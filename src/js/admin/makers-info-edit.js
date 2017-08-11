@@ -172,7 +172,7 @@ $('.hta-save').on('click', function() {
             alert('정상적으로 저장되었습니다.');
 
             if (pageType === 'add') {
-                location.href = location.href + '?id=' + model.id;
+                location.href = location.href + '?id=' + result.id;
             }
             else if (pageType === 'edit') {
                 location.reload();
@@ -186,6 +186,7 @@ $('.hta-save').on('click', function() {
 
 function init() {
     var id = model.id;
+
     if (id) {
         $('#mk-item-id').text(id);
         $('#mk-item-title').val(model.title);
@@ -212,4 +213,5 @@ function init() {
 
     var mkScheduleTab = require('./mk-schedule-tab');
     mkScheduleTab.init(model.schedules);
+
 }

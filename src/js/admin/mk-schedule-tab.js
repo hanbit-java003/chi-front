@@ -30,9 +30,9 @@ function setSchedules() {
 
 function addAreaScheduleEvents() {
     addBtnRowEvents();
-    
-    $('.hta-mk-schedule tbody tr').off('dbclick');
-    $('.hta-mk-schedule tbody tr').on('dbclick', function () {
+
+    $('.hta-mk-schedule tbody tr').off('dblclick');
+    $('.hta-mk-schedule tbody tr').on('dblclick', function () {
         var row = $(this);
         var rowIndex = $(this).index();
         var schedule = schedules[rowIndex];

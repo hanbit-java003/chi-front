@@ -5,22 +5,29 @@ require('./sub-footer');
 // url-serch-params 쓰고 싶으면 가져 와야한다.
 var URLSearchParams = require('url-search-params');
 var params = new URLSearchParams(location.search);
-var theresId = params.get('id');
+var id = params.get('id');
 var moment = require('moment');
 
 $.ajax({
-    url: '/chi_makers/api/makers/detail?id=' + theresId,
-    method: 'GET',
+    url: '/chi_makers/api/makers/detail/' + id,
+    method: 'POST',
     success: function (result) {
         initMakers(result);
     }
 });
 
 function initMakers(model) {
-    var carouselImgs = $('.carousel-inner').find('img');
     var imgs = model.imgs;
-    for(var i=0; i < carouselImgs.length; i++) {
-        $(carouselImgs[i]).attr('src', imgs[i].img);
+    var template = require('../template/carousel-template.hbs');
+    for (var i=0; i<imgs.length; i++) {
+        var html = '<li data-target="#carouselExampleIndicators" data-slide-to="'+ i +'" ></li>';
+        if (i === 0) {
+            imgs[i].one = true;
+            html = '<li data-target="#carouselExampleIndicators" data-slide-to="'+ i +'" class="active"></li>';
+        }
+        $('.carousel-indicators').append(html);
+        html = template(imgs[i]);
+        $('.carousel-inner').append(html);
     }
 
     $('.sub-detail-title').html(model.name);
