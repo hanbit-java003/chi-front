@@ -1,16 +1,17 @@
 @import 'common.less';
 
+@bottm-width: 640px;
+
 .sub-footer {
   position: fixed;
-  left: 0px;
+  left: calc(~'50%' - @bottm-width / 2);
   bottom: -6px;
-  width: 100%;
-  z-index: 2000;
+  z-index: 1500;
 }
 
 .sub-footer section {
   margin: 0px auto;
-  width: 640px;
+  width: @bottm-width;
   height: 65px;
 }
 
@@ -48,18 +49,17 @@
 .sub-order-layer {
   position: fixed;
   bottom: -161px;
-  width: 100%;
-  z-index: 100;
-  overflow: auto;
+  left: calc(~'50%' - @bottm-width / 2);
+  width: @bottm-width;
   font-size: 0px;
+  z-index: 1500;
+  overflow: auto;
 }
 
 .sub-order-text {
   position: relative;
   padding: 0px 0px 12px 10px;
-  margin: 0px auto;
-  width: 640px;
-  height: 161px;
+  width: 100%;
   border-top: solid 3px #262626;
   background-color: #fff;
 }
@@ -92,11 +92,89 @@
 
 .sub-order-cost {
   position: relative;
+  padding: 0px 1px 32px;
   width: 630px;
-  height: 44px;
 }
 
-.sub-order-cost > div {
+.sub-order-career {
+  width: 100%;
+}
+
+.sub-order-career > li {
+  width: 100%;
+  padding: 12px 43px 12px 0px;
+  border-top: 1px solid #d7d7d7;
+}
+
+.career-name {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #3d3d3d;
+  font-weight: bold;
+}
+
+.career-price {
+  position: relative;
+}
+
+.career-price-amount {
+  display: inline-block;
+  border: 1px solid #e1e1e1;
+}
+
+.amount-minus {
+  vertical-align: top;
+  width: 35px;
+  height: 33px;
+  border-right: 1px solid #e1e1e1;
+  font-size: 25px;
+  text-align: center;
+  line-height: 33px;
+}
+
+.amount-count {
+  vertical-align: top;
+  display: inline-block;
+  width: 44px;
+  height: 33px;
+  font-size: 15px;
+  text-align: center;
+  line-height: 33px;
+}
+
+.amount-plus {
+  vertical-align: top;
+  width: 35px;
+  height: 33px;
+  border-left: 1px solid #e1e1e1;
+  font-size: 25px;
+  text-align: center;
+  line-height: 33px;
+}
+
+.career-price-cost {
+  position: absolute;
+  top: 0px;
+  right: -32px;
+}
+
+.cost-times {
+  padding-right: 5px;
+  font-size: 15px;
+  letter-spacing: -1px;
+  color: #3d3d3d;
+}
+
+.cost-cancel {
+  width: 35px;
+  height: 33px;
+  border: 1px solid #e1e1e1;
+  font-size: 25px;
+  text-align: center;
+  line-height: 33px;
+}
+
+.career-total {
   position: absolute;
   bottom: 0px;
   left: 2px;
@@ -109,7 +187,7 @@
   color: #3d3d3d;;
 }
 
-.sub-order-cost > div > span {
+.career-total-price {
   position: absolute;
   right: 5px;
   font-size: 17px;
@@ -143,7 +221,7 @@
   background-color: #ffffff;
   top: 50%;
   left: calc(~'50%' - 100px);
-  z-index: 2000;
+  z-index: 1500;
   margin-top: 0px;
   height: 0px;
   width: 200px;
@@ -154,4 +232,6 @@
   border-bottom: 1px solid #e5e5e5;
   padding: 10px;
   font-size: 15px;
+  color: #1a1a1a;
+  cursor: pointer;
 }
