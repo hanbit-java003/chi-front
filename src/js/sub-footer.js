@@ -1,18 +1,20 @@
 require('../less/sub-footer.less');
+var careerController = require('../js/admin/sub-career-tab');
 
 var options = [{
     option: '아쿠아블루레몬',
-    price: 32000
+    price: 40000
 }, {
     option: '블루체리머스크',
-    price: 32000
+    price: 30000
 }, {
     option: '일랑일랑아이리스',
-    price: 32000
+    price: 20000
 }, {
     option: '스윗피치자몽',
-    price: 32000
+    price: 10000
 }];
+
 
 $('.sub-footer-order').on('click', function() {
     $('body').append('<div class="overlay-layer dark-layer"></div>');
@@ -92,10 +94,9 @@ function optionListInsert() {
 
     $('.sub-order-option-list > li').on('click', function () {
         var index = $(this).index();
-        var value = $(this).text();
-
-        console.log(index);
 
         optionListClose();
+
+        careerController.insert(options[index]);
     });
 }
