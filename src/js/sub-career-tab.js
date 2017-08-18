@@ -13,7 +13,7 @@ function insert(_option) {
     option.count = 1;
     careerItems.push(option);
 
-    var template = require('../../template/sub-order-career-item.hbs');
+    var template = require('../template/sub-order-career-item.hbs');
     var html = template(option);
     $('.sub-order-career').append(html);
 

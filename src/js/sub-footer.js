@@ -1,5 +1,5 @@
 require('../less/sub-footer.less');
-var careerController = require('../js/admin/sub-career-tab');
+var careerController = require('../js/sub-career-tab');
 
 var options = [{
     option: '아쿠아블루레몬',

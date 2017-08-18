@@ -185,6 +185,17 @@ $('.hta-save').on('click', function() {
     });
 });
 
+$('.hta-delete').on('click', function () {
+    var id = model.id;
+
+    $.ajax({
+        url: '/chi_makers/api/admin/makers/delete/' + id,
+        success: function (result) {
+            location.href = '/admin/makers-list.html';
+        }
+    });
+});
+
 function init() {
     var id = model.id;
 
@@ -198,6 +209,9 @@ function init() {
         $('#mk-item-likes').val(model.likes);
         $('#mk-item-orders').val(model.orders);
         pageType = 'edit';
+    }
+    else {
+        $('.hta-delete').hide();
     }
 
     if (model.imgs) {
