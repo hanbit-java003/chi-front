@@ -1,4 +1,7 @@
+var _ = require('lodash');
+
 var careerItems = [];
+var optionId = 1;
 
 function insert(_option) {
     var option = _option;
@@ -10,6 +13,7 @@ function insert(_option) {
         }
     }
 
+    option.id = optionId++;
     option.count = 1;
     careerItems.push(option);
 
@@ -41,6 +45,29 @@ function setCareerEvent() {
         li.find('.amount-count').text(option.count);
         li.find('.cost-times').text(option.price * option.count + '원');
     });
+
+    $('.career-price-cost .mk-btn').off('click');
+    $('.career-price-cost .mk-btn').on('click', function () {
+        var li = $(this).parents('li');
+        var index = li.index();
+        var option = careerItems[index];
+
+        if ($(this).hasClass('cost-cancel')) {
+            $('.sub-order-career [option-id=' + option.id +']').animate({
+                height: '0px'
+            }, {
+                duration: 500,
+                complete: function () {
+                    $('.sub-order-career [option-id=' + option.id +']').remove();
+                    var abc = _.remove(careerItems, function (n) {
+                        return n == index;
+                    });
+                    console.log(abc);
+                }
+            });
+        }
+    });
+
 }
 
 module.exports = {
