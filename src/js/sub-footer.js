@@ -23,6 +23,9 @@ $('.sub-footer-order').on('click', function() {
     var memberLayer = require('../template/sub-footer-order-layer.hbs');
 
     $('.sub-footer').append(memberLayer);
+    if (careerController.hasCareerItems()) {
+        careerController.setCareer();
+    }
 
     $('.sub-order-layer').animate({
         bottom: '0px'
