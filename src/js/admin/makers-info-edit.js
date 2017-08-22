@@ -167,11 +167,14 @@ $('.hta-save').on('click', function() {
     }
 
     var formData = new FormData();
-    formData.append('json', JSON.stringify(model));
+    formData.append('json', JSON.stringify(model)); // 모델을 JSON 형태로 바꿔줌
 
     var imgs = $('#hta-mk-imgs')[0].files;
-    for (var i=0; i<imgs.length; i++) {
-        formData.append('imgs', imgs[i]); // 같은 이름(imgs)로 하나씩 넣으면, request에서 리스트로 받는다.
+
+    if (imgs.length > 0) {
+        for (var i=0; i<imgs.length; i++) {
+            formData.append('imgs', imgs[i]); // 같은 이름(imgs)로 하나씩 넣으면, request에서 리스트로 받는다.
+        }
     }
 
     $.ajax({
