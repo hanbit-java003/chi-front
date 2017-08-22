@@ -1,6 +1,6 @@
 require('bootstrap');
 require('../less/sub.less');
-require('./sub-footer');
+var subFooter = require('./sub-footer');
 
 var common = require('./common');
 // url-serch-params 쓰고 싶으면 가져 와야한다.
@@ -52,6 +52,8 @@ function initMakers(model) {
 
     orderLimit(model);
     attachEvents();
+
+    subFooter.init(model.options);
 }
 
 function orderLimit(model) {
@@ -132,3 +134,4 @@ $('.header-title').on('click', function() {
 $('.carousel').carousel({
     interval: false
 });
+

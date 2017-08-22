@@ -7,7 +7,7 @@ function insert(_option) {
     var option = _option;
 
     for (var i=0; i<careerItems.length; i++) {
-        if (careerItems[i].option === option.option) {
+        if (careerItems[i].name === option.name) {
             alert('이미 선택된 옵션입니다. 다른 옵션을 선택해주세요.');
             return;
         }

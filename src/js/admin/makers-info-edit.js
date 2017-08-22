@@ -11,7 +11,8 @@ _.move = require('lodash-move').default;
 var model = {
     imgs: [],
     infos: [],
-    schedules: []
+    schedules: [],
+    options: []
 };
 
 var pageType = 'add';
@@ -40,20 +41,17 @@ $('#hta-mk-imgs').on('change', function() {
         return;
     }
 
+    $('#hta-mk-imgs-preview').empty();
     for (var i=0; i<this.files.length; i++) {
         var file = this.files[i];
 
         if (!file.type.startsWith('image/')) {
-            alert('이미지 파일이 아닙니다.');
+            alert(file.name + '은 이미지 파일이 아닙니다.');
             return;
         }
-    }
 
-    var fileLength = this.files.length;
-    $('#hta-mk-imgs-preview').empty();
-    for (var i=0; i<fileLength; i++) {
         var fileReader = new FileReader();
-        fileReader.readAsDataURL(this.files[i]);
+        fileReader.readAsDataURL(file);
         fileReader.onload = function (event) {
             var url = event.target.result;
             var html = '<li style="background-image: url(' + url + ')"></li>';
@@ -146,6 +144,19 @@ $('.hta-save').on('click', function() {
         }
     }
 
+    for (var i=0; i<model.options.length; i++) {
+        delete model.options[i].no;
+
+        if (!model.options[i].name) {
+            alert('옵션의 내용을 입력하세요.');
+            return;
+        }
+        else if (!model.options[i].price) {
+            alert('옵션의 가격을 입력하세요.');
+            return;
+        }
+    }
+
     var url;
 
     if (pageType === 'add') {
@@ -229,4 +240,6 @@ function init() {
     var mkScheduleTab = require('./mk-schedule-tab');
     mkScheduleTab.init(model.schedules);
 
+    var mkOptionTab = require('./mk-option-tab');
+    mkOptionTab.init(model.options);
 }
