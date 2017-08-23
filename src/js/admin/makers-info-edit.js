@@ -171,7 +171,7 @@ $('.hta-save').on('click', function() {
 
     var imgs = $('#hta-mk-imgs')[0].files;
 
-    if (imgs.length > 0) {
+    if (imgs.length > 0) { // input에 파일 입력하면 그것 사용, 아니면 model 것 사용
         for (var i=0; i<imgs.length; i++) {
             formData.append('imgs', imgs[i]); // 같은 이름(imgs)로 하나씩 넣으면, request에서 리스트로 받는다.
         }
@@ -230,8 +230,11 @@ function init() {
 
     if (model.imgs) {
         $('#hta-mk-imgs-preview').empty();
+        var html = '<div class="main-img">메인</div>';
+        $('#hta-mk-imgs-preview').append(html);
         model.imgs.forEach(function (img) {
             var url = img.img;
+
             var html = '<li style="background-image: url(' + url + ')"></li>';
             $('#hta-mk-imgs-preview').append(html);
         });

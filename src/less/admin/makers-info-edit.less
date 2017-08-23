@@ -44,16 +44,28 @@
 }
 
 #hta-mk-imgs-preview {
+  position: relative;
   width: 100%;
 }
 
-#hta-mk-imgs-preview > li{
+#hta-mk-imgs-preview > li {
   display: inline-block;
-  margin: 5px;
+  margin: 5px 5px 20px 5px;
   width: 100px;
   height: 100px;
   background-size: cover;
   background-position: 50% 50%;
+}
+
+#hta-mk-imgs-preview .main-img {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  width: 100px;
+  height: 20px;
+  background-color: #6d3c65;
+  color: #ffffff;
+  text-align: center;
 }
 
 .hta-tab {

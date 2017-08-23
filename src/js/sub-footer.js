@@ -16,6 +16,15 @@ function init(_options) {
         if (careerController.hasCareerItems()) {
             careerController.setCareer();
         }
+        else if (options.length === 1) { // option 1개인 경우 추가
+            careerController.insert(options[0]);
+        }
+
+        if (options.length === 1) { // option 1개인 경우 UI
+            $('.sub-order-text .sub-order-option').hide();
+            $('.career-price .career-price-cost').hide();
+        }
+
 
         $('.sub-order-layer').animate({
             bottom: '0px'
