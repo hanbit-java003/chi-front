@@ -39,33 +39,92 @@
   height: 100px;
 }
 
-#hta-mk-imgs {
+.form-group.btn-file {
+  display: inline-block;
+}
+
+.mk-btn-file {
+  display: block;
+}
+
+#hta-mk-imgs-main, #hta-mk-imgs-slide {
   display: none;
 }
 
-#hta-mk-imgs-preview {
-  position: relative;
-  width: 100%;
+@img-width: 100px;
+
+.form-group.btn-file-preview {
+  display: inline-block;
 }
 
-#hta-mk-imgs-preview > li {
+#hta-mk-imgs-main-preview {
+  position: relative;
+  display: inline-block;
+}
+
+#hta-mk-imgs-main-preview > li {
   display: inline-block;
   margin: 5px 5px 20px 5px;
-  width: 100px;
-  height: 100px;
+  width: @img-width;
+  height: @img-width;
   background-size: cover;
   background-position: 50% 50%;
 }
 
-#hta-mk-imgs-preview .main-img {
+#hta-mk-imgs-main-preview .main-img {
   position: absolute;
   bottom: 5px;
   left: 5px;
-  width: 100px;
+  width: @img-width;
   height: 20px;
   background-color: #6d3c65;
   color: #ffffff;
   text-align: center;
+}
+
+#hta-mk-imgs-slide-preview { // less 식으로 표현
+  position: relative;
+  display: inline-block;
+
+  & > li {
+    position: relative;
+    display: inline-block;
+    margin: 5px 5px 20px 5px;
+    width: @img-width;
+    height: @img-width;
+    background-size: cover;
+    background-position: 50% 50%;
+
+    .hta-img-remove {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 8px;
+      border: 1px solid #fff;
+      background-color: #d9534f;
+      color: #fff;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      text-align: center;
+      line-height: 14px;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .shadow {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      line-height: @img-width;
+      color: #2d2d2d;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
 }
 
 .hta-tab {

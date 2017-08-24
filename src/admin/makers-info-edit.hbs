@@ -41,13 +41,26 @@
             <label for="mk-item-orders">주문수</label>
             <input id="mk-item-orders" class="form-control" type="number" placeholder="숫자만 입력">
         </div>
-        <div class="form-group">
-            <label>메인이미지 + 슬라이드 이미지</label>
-            <button for="hta-mk-imgs" class="mk-btn-file btn btn-default">파일 2개 이상 선택</button>
-            <input multiple="multiple" name="filename[]" type="file" id="hta-mk-imgs" accept="image/*">
+        <div>
+            <div class="form-group btn-file">
+                <label>메인 이미지</label>
+                <button for="hta-mk-imgs-main" class="mk-btn-file btn btn-default">파일 1개 선택</button>
+                <input name="filename[]" type="file" id="hta-mk-imgs-main" accept="image/*">
+            </div>
+            <div class="form-group btn-file">
+                <label>슬라이드 이미지</label>
+                <button for="hta-mk-imgs-slide" class="mk-btn-file btn btn-default">파일 1개 이상 선택</button>
+                <input multiple name="filename[]" type="file" id="hta-mk-imgs-slide" accept="image/*">
+            </div>
         </div>
-        <div class="form-group">
-            <ul id="hta-mk-imgs-preview">
+        <div class="form-group btn-file-preview">
+            <ul id="hta-mk-imgs-main-preview">
+                <li></li>
+            </ul>
+        </div>
+        <div class="form-group btn-file-preview">
+            <ul id="hta-mk-imgs-slide-preview">
+                <li></li>
             </ul>
         </div>
         <div class="hta-tab">

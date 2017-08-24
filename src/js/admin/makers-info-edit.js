@@ -15,6 +15,8 @@ var model = {
     options: []
 };
 
+var slides = [];
+
 var pageType = 'add';
 
 if (!params.get('id')) {
@@ -35,13 +37,11 @@ $('.mk-btn-file').on('click', function() {
     $('#' + $(this).attr('for')).click(); // for가 아이디 이니까 가져와서 input이 클릭되도록
 });
 
-$('#hta-mk-imgs').on('change', function() {
-    if (this.files.length < 2) {
-        alert('그림은 2개 이상');
+$('#hta-mk-imgs-main').on('change', function() {
+    if (this.files.length === 0) {
         return;
     }
 
-    $('#hta-mk-imgs-preview').empty();
     for (var i=0; i<this.files.length; i++) {
         var file = this.files[i];
 
@@ -49,14 +49,40 @@ $('#hta-mk-imgs').on('change', function() {
             alert(file.name + '은 이미지 파일이 아닙니다.');
             return;
         }
+    }
+
+    var fileReader = new FileReader();
+    fileReader.onload = function (event) {
+        var url = event.target.result;
+        var html = '<li style="background-image: url(' + url + ')"></li>';
+        $('#hta-mk-imgs-main-preview > li').replaceWith(html);
+        $('#hta-mk-imgs-main-preview > li').attr('changed', true);
+    };
+    // file 읽어내기 작업이 끝나면 - onload event를 실행
+    fileReader.readAsDataURL(this.files[0]);
+});
+
+$('#hta-mk-imgs-slide').on('change', function() {
+    if (this.files.length === 0) {
+        return;
+    }
+
+    for (var i=0; i<this.files.length; i++) {
+        var file = this.files[i];
+
+        if (!file.type.startsWith('image/')) {
+            continue;
+        }
+
+        slides.push(file);
 
         var fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
+
         fileReader.onload = function (event) {
-            var url = event.target.result;
-            var html = '<li style="background-image: url(' + url + ')"></li>';
-            $('#hta-mk-imgs-preview').append(html);
+            addPreview(event.target.result, false);
         };
+
+        fileReader.readAsDataURL(file);
     }
 });
 
@@ -116,9 +142,20 @@ $('.hta-save').on('click', function() {
         $('#mk-item-orders').focus();
         return;
     }
-    else if (!model.imgs &&
-        $('#hta-mk-imgs')[0].files.length < 2) {
-        alert('메인과 슬라이드가 될 이미지입니다. <br>2개 이상 선택하세요.');
+    else if (!model.imgs[0] && !$('#hta-mk-imgs-main')[0].files.length) {
+        alert('메인이 될 이미지입니다. <br>1개는 필수입니다.');
+        return;
+    }
+    else if (!slides.imgs && !_.filter(model.imgs, function(value) {
+            return value !== '_removed_';
+        }).length) {
+        alert('슬라이드가 될 이미지입니다. <br>1개 이상은 필수입니다.');
+        return;
+    }
+    else if (!photos.length && !_.filter(model.photos, function(value) {
+            return value !== '_removed_';
+        }).length) { // 추가파일과 모델의 파일을 구분
+        alert('사진을 한개 이상 추가하세요.');
         return;
     }
 
@@ -229,14 +266,20 @@ function init() {
     }
 
     if (model.imgs) {
-        $('#hta-mk-imgs-preview').empty();
-        var html = '<div class="main-img">메인</div>';
-        $('#hta-mk-imgs-preview').append(html);
-        model.imgs.forEach(function (img) {
+        $('#hta-mk-imgs-main-preview').empty();
+        $('#hta-mk-imgs-slide-preview').empty();
+        var tag = '<div class="main-img">메인</div>';
+        $('#hta-mk-imgs-main-preview').append(tag);
+        model.imgs.forEach(function (img, index) {
             var url = img.img;
-
             var html = '<li style="background-image: url(' + url + ')"></li>';
-            $('#hta-mk-imgs-preview').append(html);
+            if (index === 0) {
+                $('#hta-mk-imgs-main-preview').append(html);
+            }
+            else {
+                addPreview(url, true);
+            }
+            img.remove = false;
         });
     }
 
@@ -248,4 +291,45 @@ function init() {
 
     var mkOptionTab = require('./mk-option-tab');
     mkOptionTab.init(model.options);
+}
+
+function addPreview(url, saved) {
+    var preview = $('<li><div class="hta-img-remove">X</div></li>');
+    preview.attr('saved', saved); // DB에 저장된 이미지인지, 지금 파일로 가져온 이미지인지 표시
+
+    preview.css({
+        'background-image': 'url(' + url + ')'
+    });
+
+    $('#hta-mk-imgs-slide-preview').append(preview);
+    // li:last-child - 추가하면 마지막에 붙으니까 마지막만 주면 결국 전부 이벤트 주게됨
+    $('#hta-mk-imgs-slide-preview > li:last-child .hta-img-remove').on('click', function() {
+        var img = $(this).parent('li');
+        // 저장된 사진과 새로 추가된 사진 구분
+        var saved = img.attr('saved') === 'true';
+        var savedPhotoCount = model.imgs.length; // 메인 이미지 빼고
+
+        var index = saved ? img.index() : img.index() - savedPhotoCount;
+
+        if (saved) {
+            model.imgs[index + 1].remove = true;
+            var shadow = '<div class="shadow">삭제취소</div>';
+            img.append(shadow);
+            $(this).hide();
+            shadowEvent(index);
+        }
+        else {
+            slides.splice(index); // array - splice(제거할 부분, 제거 수) - 추가할 요소 파라미터도 있지마 안썼음
+            img.remove(); // 파일 선택이라면 지우면 됨
+        }
+    });
+}
+
+function shadowEvent(index) { // 받은 index의 nth-child를 줘서 해당 태그를 찾는다.
+    $('#hta-mk-imgs-slide-preview > li:nth-child('+ (index + 1) +') .shadow').on('click', function () {
+        var li = $(this).parent('li'); // parent를 사용하면 상위 태그 찾음 - index 사용안해도 됨
+        $(li).find('.hta-img-remove').show();
+        $(this).remove();
+        model.imgs[index + 1].remove = false;
+    });
 }
