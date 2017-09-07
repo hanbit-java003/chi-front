@@ -1,8 +1,7 @@
+{{#each this}}
 <div class="mk-content">
     <div class="mk-content-img" id="{{id}}">
-    {{#each imgs ~}}
-        <img src="{{img}}">
-    {{~/each}}
+        <img src="{{mainImg}}">
     </div>
     <div class="mk-content-text">
         <div class="mk-content-order-cnt">
@@ -28,3 +27,4 @@
         </div>
     </div>
 </div>
+{{/each}}

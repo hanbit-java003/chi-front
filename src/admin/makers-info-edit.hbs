@@ -26,20 +26,18 @@
             <textarea id="mk-item-content" class="form-control" placeholder="제품 설명"></textarea>
         </div>
         <div class="form-group sm">
-            <label for="mk-item-orderdays">주문날짜</label>
-            <input id="mk-item-orderdays" class="form-control" type="text"  placeholder="0000.0.00 오후 00시 ~ 0000.0.0 오후 00시">
+            <input type='text' class="form-control" id="mk-item-orderStart"/>
+            <input type='text' class="form-control" id="mk-item-orderEnd"/>
         </div>
-        <div class="form-group sm">
-            <label for="mk-item-price">가격</label>
-            <input id="mk-item-price" class="form-control" type="number" placeholder="숫자만 입력">
-        </div>
-        <div class="form-group sm">
-            <label for="mk-item-likes">좋아요수</label>
-            <input id="mk-item-likes" class="form-control" type="number" placeholder="숫자만 입력">
-        </div>
-        <div class="form-group sm">
-            <label for="mk-item-orders">주문수</label>
-            <input id="mk-item-orders" class="form-control" type="number" placeholder="숫자만 입력">
+        <div>
+            <div class="form-group sm">
+                <label for="mk-item-price">가격</label>
+                <input id="mk-item-price" class="form-control" type="number" placeholder="숫자만 입력">
+                <label for="mk-item-likes">좋아요수</label>
+                <input id="mk-item-likes" class="form-control" type="number" placeholder="숫자만 입력">
+                <label for="mk-item-orders">주문수</label>
+                <input id="mk-item-orders" class="form-control" type="number" placeholder="숫자만 입력">
+            </div>
         </div>
         <div>
             <div class="form-group btn-file">
@@ -56,11 +54,11 @@
         <div class="form-group btn-file-preview">
             <ul id="hta-mk-imgs-main-preview">
                 <li></li>
+                <div class="main-img">메인</div>
             </ul>
         </div>
         <div class="form-group btn-file-preview">
             <ul id="hta-mk-imgs-slide-preview">
-                <li></li>
             </ul>
         </div>
         <div class="hta-tab">

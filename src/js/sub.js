@@ -33,11 +33,16 @@ function initMakers(model) {
 
     $('.sub-detail-title').html(model.name);
     $('.sub-detail-price').html(model.price.toLocaleString() + '원');
-    $('.sub-box-info-day').html('주문기간 :' + model.orderDays);
+
+    var orderday = model.orderDays;
+    orderday = orderday.replace(/am/g, '오전');
+    orderday = orderday.replace(/pm/g, '오후');
+    orderday = orderday.replace(/h/g, '시');
+    $('.sub-box-info-day').html('주문기간 : ' + orderday);
 
     var schedulesTemplate = require('../template/sub/schedule.hbs');
-    var schedulesHtml = schedulesTemplate(model);
-    $('.sub-box-info-items').html('배송예정일' + schedulesHtml);
+    var schedulesHtml = schedulesTemplate(model.schedules);
+    $('.sub-box-info-schedule').html(schedulesHtml);
     $('.sub-on-order-person').html(model.orders + '명 주문중');
 
     var nowHtml = moment().format('(MM/DD hh:mm)');
@@ -57,21 +62,12 @@ function initMakers(model) {
 }
 
 function orderLimit(model) {
-    var str = String(model.orderDays);
-    var n = str.indexOf('~');
-    var dot = str.indexOf('.', n);
-    var year = Number(str.substring(n+2, dot));
-    n = dot+1;
-    var dot = str.indexOf('.', n);
-    var month = Number(str.substring(n, dot));
-    n = dot+1;
-    var day = Number(str.substring(n, n+2).trim());
+    var flow = model.orderDays.indexOf('~');
+    var orderEnd = model.orderDays.substring(flow).trim();
+    var remainDay = moment(orderEnd, '~ YYYY.MM.DD a hh시');
+    var now = moment();
+    var result = remainDay.diff(now, 'days');
 
-    var a = moment([year, month-1, day]);
-    // 한 달 추가되서 나온다 이해할 수 없다.
-    var b = moment();
-
-    var result = a.diff(b, 'days');
     if(result <= 0) {
         $('.sub-detail-limit').text('주문종료');
     }

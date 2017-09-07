@@ -1,7 +1,7 @@
 require('bootstrap');
 
 $('.hta-logo').on('click', function() {
-    location.href = './';
+    location.href = '/admin';
 });
 
 $('.hta-menu-group').on('click', function() {

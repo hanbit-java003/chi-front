@@ -6,7 +6,7 @@ function init(_schedules) {
 
     $('[tab-id=schedule] .hta-add-row').on('click', function () {
         schedules.push({
-            schedule: '배송예정일 : 0월 0주경 배송시작'
+            schedule: '0월 0주경 배송시작'
         });
 
         setSchedules();

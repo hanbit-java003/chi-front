@@ -49,6 +49,17 @@ module.exports = {
             }),
             exclude: /node_modules/
         }, {
+            test: /\.css$/,
+            use: ExtractTextWebpackPlugin.extract({
+                fallback: 'style-loader',
+                use: [{
+                    loader: 'css-loader',
+                    options: {
+                        url: false
+                    }
+                }]
+            })
+        }, {
             test: /\.hbs$/,
             loader: 'handlebars-loader',
             query: {

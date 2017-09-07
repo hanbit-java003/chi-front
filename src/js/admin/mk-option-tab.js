@@ -4,7 +4,7 @@ function init(_options) {
     options = _options;
     setOptions();
 
-    $('[tab-id=options] .hta-add-row').on('click', function() {
+    $('[tab-id=option] .hta-add-row').on('click', function() {
         options.push({
             name: '이름',
             price: 0
