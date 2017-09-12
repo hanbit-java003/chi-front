@@ -3,8 +3,9 @@ var _ = require('lodash');
 var careerItems = [];
 var totalPrice = 0;
 
-function insert(_option) {
+function insert(_option, _index) {
     var option = _option;
+    var index = _index;
 
     for (var i=0; i<careerItems.length; i++) {
         if (careerItems[i].name === option.name) {

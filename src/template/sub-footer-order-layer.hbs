@@ -1,6 +1,8 @@
 <div class="sub-order-layer">
     <div class="sub-order-text">
-        <div class="sub-order-option">옵션 선택<i class="fa fa-angle-down"></i></div>
+    {{#each list}}
+        <div class="sub-order-option">{{name}}<i class="fa fa-angle-down"></i></div>
+    {{/each}}
         <div class="sub-order-cost">
             <ul class="sub-order-career">
             </ul>
@@ -12,6 +14,11 @@
             <li style="background-color: #f9524a">결제하기</li>
         </ul>
     </div>
-    <ul class="sub-order-option-list">
-    </ul>
+    {{#each list}}
+        <ul class="sub-order-option-list">
+        {{#each options}}
+            <li price="{{price}}">{{name}}</li>
+        {{/each}}
+        </ul>
+    {{/each}}
 </div>

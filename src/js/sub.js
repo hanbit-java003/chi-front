@@ -17,6 +17,54 @@ $.ajax({
     }
 });
 
+var optionList = {
+    id: 614330,
+    deliveryPrice: 0,
+    list: [{
+        name: '디자인선택',
+        options: [{
+            name: '스윈팔찌',
+            price: 51000
+        }, {
+            name: '앤드팔찌',
+            price: 51000
+        }]
+    }, {
+        name: '사이즈선택',
+        options: [{
+            name: '16.5cm',
+            price: 0
+        }, {
+            name: '17.5',
+            price: 0
+        }, {
+            name: '18.5',
+            price: 0
+        }]
+    }, {
+        name: '색상선택',
+        options: [{
+            name: '앤틱실버',
+            price: 0
+        }, {
+            name: '실버',
+            price: 0
+        }]
+    }]
+};
+
+var optionList2 = { // 옵션 1개 모델
+    id: 614330,
+    deliveryPrice: 2500,
+    list: [{
+        name: 'CAMERA',
+        options: [{
+            name: '',
+            price: 51000
+        }]
+    }]
+};
+
 function initMakers(model) {
     var imgs = model.imgs;
     var template = require('../template/carousel-template.hbs');
@@ -58,7 +106,7 @@ function initMakers(model) {
     orderLimit(model);
     attachEvents();
 
-    subFooter.init(model.options);
+    subFooter.init(optionList);
 }
 
 function orderLimit(model) {

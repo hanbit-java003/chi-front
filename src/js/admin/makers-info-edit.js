@@ -14,8 +14,7 @@ _.move = require('lodash-move').default;
 var model = {
     imgs: [],
     infos: [],
-    schedules: [],
-    options: []
+    schedules: []
 };
 
 var slides = [];
