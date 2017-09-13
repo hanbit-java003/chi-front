@@ -2,6 +2,13 @@ var _ = require('lodash');
 
 var careerItems = [];
 var totalPrice = 0;
+var optionList = {
+    list: []
+};
+
+function init(_optionList) {
+    optionList = _optionList;
+}
 
 function insert(_option, _index) {
     var option = _option;
@@ -97,6 +104,7 @@ function hasCareerItems() {
 }
 
 module.exports = {
+    init: init,
     insert: insert,
     hasCareerItems : hasCareerItems,
     setCareer : setCareer

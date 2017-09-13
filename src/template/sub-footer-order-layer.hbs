@@ -15,7 +15,7 @@
         </ul>
     </div>
     {{#each list}}
-        <ul class="sub-order-option-list">
+        <ul level="{{level}}" class="sub-order-option-list">
         {{#each options}}
             <li price="{{price}}">{{name}}</li>
         {{/each}}

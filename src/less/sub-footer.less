@@ -69,7 +69,7 @@
   margin-top: 10px;
   padding-right: 10px;
   width: 620px;
-  height: 40px;
+  height: 0px;
   border: solid 2px #f9524a;
   font-size: 15px;
   font-weight: bold;
@@ -220,18 +220,18 @@
 .sub-order-option-list {
   position: fixed;
   display: none;
-  background-color: #ffffff;
-  top: 50%;
+  overflow: hidden;
+  top: 45%;
   left: calc(~'50%' - 100px);
-  z-index: 1500;
-  margin-top: 0px;
   height: 0px;
+  z-index: 1500;
 }
 
 .sub-order-option-list > li {
-  overflow: hidden;
   border-bottom: 1px solid #e5e5e5;
   padding: 10px;
+  width: 200px;
+  background-color: #ffffff;
   font-size: 15px;
   color: #1a1a1a;
   cursor: pointer;

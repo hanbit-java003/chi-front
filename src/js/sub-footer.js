@@ -1,6 +1,5 @@
 require('../less/sub-footer.less');
 var careerController = require('../js/sub-career-tab');
-var optionStack = require('../js/sub-option-stack');
 
 var optionList = {
     list: []
@@ -10,11 +9,16 @@ var level = 0;
 
 function init(_optionList) {
     optionList = _optionList;
+    careerController.init(_optionList);
 
     $('.sub-footer-order').on('click', function() {
         $('body').append('<div class="overlay-layer dark-layer"></div>');
         $('body').css('overflow', 'hidden');
 
+        var listCnt = optionList.list.length;
+        for (var i=0; i<listCnt; i++) {
+            optionList.list[i].level = i;
+        }
         var memberLayer = require('../template/sub-footer-order-layer.hbs');
         var html = memberLayer(optionList); // list 안에 list도 가능
         $('.sub-footer').append(html);
@@ -36,35 +40,65 @@ function init(_optionList) {
         }
 
         // 옵션 여러개
-        var optionBars = $('.sub-order-text .sub-order-option');
-        for (var i=0; i<optionBars.length; i++) {
-            if (level === i) {
-                $(optionBars[i]).css('display', 'block');
-            }
-            else {
-                $(optionBars[i]).css('display', 'none');
-            }
-        }
+        optionBarsDisplay();
+
         optionEventAttach();
+        itemEventAttach();
     });
 }
 
-function optionEventAttach() { //<----- 여기부터 시작
-    $('.sub-order-layer').on('click', function () {
-        var index = $(this).index();
-        optionListClose();
+function optionBarsDisplay() {
+    var optionBars = $('.sub-order-text .sub-order-option');
+    for (var i=0; i<optionBars.length; i++) {
+        if (level >= i) {
+            $(optionBars[i]).css('display', 'block');
+        }
+        else {
+            $(optionBars[i]).css('display', 'none');
+        }
+    }
+    $(optionBars[level]).animate({
+        height: '40px'
+    }, {
+        duration: 400,
+        complete: function () {
+        }
     });
+}
 
+function itemEventAttach() {
+    $('.sub-order-option-list > li').on('click', function () {
+        level = $(this).parent('ul').attr('level');
+        var index = $(this).index(); // 해당 ul의 li의 index가 출력
+
+        //careerController.insert(level, index);
+        optionListClose();
+
+        var optionBars = $('.sub-order-text .sub-order-option');
+        $(optionBars[level]).text(optionList.list[level].options[index].name);
+
+        level++;
+        $(optionBars[level]).css('height', '0px');// 애니메이션 넣기 위해 bar 높이 0으로
+        optionBarsDisplay();
+    });
+}
+
+function optionEventAttach() { // 이벤트 붙이기
     $('.sub-order-option').on('click', function () {
+        var index = $(this).index();
+
         $('.overlay-layer').off('click');
 
         $('.sub-order-text').append('<div class="overlay-layer dark-layer"></div>');
         $('.sub-order-text').css('overflow', 'hidden');
-        $('.sub-order-option-list').css('display', 'block');
 
-        $('.sub-order-option-list').animate({
-            marginTop: '-100px',
-            height: layer.length * 42 + 'px'
+        var optionLists = $('.sub-order-option-list');
+        var itemLength = optionList.list[index].options.length;
+
+        $(optionLists[index]).css('display', 'block');
+        $(optionLists[index]).animate({ // 벌어지는 애니메이션 주기 위해선 높이 초기값이 0 이어야한다.
+            marginTop: -1 * itemLength * 21 + 'px',
+            height: itemLength * 42 + 'px'
         }, {
             duration: 500,
             complete: function () {
@@ -72,19 +106,6 @@ function optionEventAttach() { //<----- 여기부터 시작
                 $('.overlay-layer').on('click', optionListClose);
             }
         });
-    });
-}
-
-function close() {
-    $('.sub-order-layer').animate({
-        bottom: '-161px'
-    }, {
-        duration: 500,
-        complete: function () {
-            $('.sub-order-layer').remove();
-            $('.overlay-layer').remove();
-            $('body').css('overflow', 'auto');
-        }
     });
 }
 
@@ -105,6 +126,18 @@ function optionListClose() {
     });
 }
 
+function close() {
+    $('.sub-order-layer').animate({
+        bottom: '-161px'
+    }, {
+        duration: 500,
+        complete: function () {
+            $('.sub-order-layer').remove();
+            $('.overlay-layer').remove();
+            $('body').css('overflow', 'auto');
+        }
+    });
+}
 
 module.exports = {
     init: init
