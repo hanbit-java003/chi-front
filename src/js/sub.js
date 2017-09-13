@@ -32,22 +32,22 @@ var optionList = {
     }, {
         name: '사이즈선택',
         options: [{
-            name: '16.5cm',
+            name: '1cm',
             price: 0
         }, {
-            name: '17.5',
+            name: '2cm',
             price: 0
         }, {
-            name: '18.5',
+            name: '3cm',
             price: 0
         }]
     }, {
         name: '색상선택',
         options: [{
-            name: '앤틱실버',
+            name: '파랑',
             price: 0
         }, {
-            name: '실버',
+            name: '빨강',
             price: 0
         }]
     }]

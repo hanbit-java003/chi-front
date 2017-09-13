@@ -1,31 +1,48 @@
 var _ = require('lodash');
 
-var careerItems = [];
+var career = [];
+var optionStack = [];
 var totalPrice = 0;
+
 var optionList = {
     list: []
 };
+var listCnt = 0;
 
 function init(_optionList) {
     optionList = _optionList;
+    listCnt = optionList.list.length;
 }
 
-function insert(_option, _index) {
-    var option = _option;
-    var index = _index;
+function insert(_level, index) {
+    var level = Number(_level);
 
-    for (var i=0; i<careerItems.length; i++) {
-        if (careerItems[i].name === option.name) {
-            alert('이미 선택된 옵션입니다. 다른 옵션을 선택해주세요.');
-            return;
+    var name = optionList.list[level].options[index].name;
+    if (optionStack.length === listCnt && level === listCnt -1) {
+        optionStack.pop();
+    }
+    else {
+        for (var i=optionStack.length -1; i>=level; i--) {
+            optionStack.pop();
         }
     }
 
-    option.count = 1;
-    option.priceCount = option.count * option.price;
-    careerItems.push(option);
+    optionStack.push(name);
+    var str = '';
+    for (var i=0; i<optionStack.length; i++) {
+        str += optionStack[i] + ' ';
+    }
 
-    setCareer(); // set - 개체 변할 때마다 새로 만드는게 편하다 - 정신건장에 좋음
+    if (optionStack.length === listCnt && level === listCnt -1) {
+        if (career.indexOf(str) !== -1) {
+            alert('이미 상품을 선택하셨습니다.');
+        }
+        else {
+            career.push(str);
+            console.log(str);
+            //setCareer(); // set - 개체 변할 때마다 새로 만드는게 편하다 - 정신건장에 좋음
+        }
+    }
 }
 
 function setCareer() {
@@ -105,7 +122,5 @@ function hasCareerItems() {
 
 module.exports = {
     init: init,
-    insert: insert,
-    hasCareerItems : hasCareerItems,
-    setCareer : setCareer
+    insert: insert
 };

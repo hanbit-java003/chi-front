@@ -6,6 +6,7 @@ var optionList = {
 };
 
 var level = 0;
+var listCnt = 0;
 
 function init(_optionList) {
     optionList = _optionList;
@@ -15,7 +16,7 @@ function init(_optionList) {
         $('body').append('<div class="overlay-layer dark-layer"></div>');
         $('body').css('overflow', 'hidden');
 
-        var listCnt = optionList.list.length;
+        listCnt = optionList.list.length;
         for (var i=0; i<listCnt; i++) {
             optionList.list[i].level = i;
         }
@@ -71,13 +72,15 @@ function itemEventAttach() {
         level = $(this).parent('ul').attr('level');
         var index = $(this).index(); // 해당 ul의 li의 index가 출력
 
-        //careerController.insert(level, index);
+        careerController.insert(level, index);
         optionListClose();
-
         var optionBars = $('.sub-order-text .sub-order-option');
+        for (var i=listCnt -1; i>level; i--) {
+            $(optionBars[i]).text(optionList.list[i].name);
+        }
         $(optionBars[level]).text(optionList.list[level].options[index].name);
 
-        level++;
+        level++; // 전역 변수에서 number로 선언
         $(optionBars[level]).css('height', '0px');// 애니메이션 넣기 위해 bar 높이 0으로
         optionBarsDisplay();
     });
