@@ -36,18 +36,32 @@ function init(_optionList) {
 
         // 옵션 1개인 경우~~보류
         if (optionList.list.length === 1) { // option 1개인 경우 UI
+            oneOptionItem();
             $('.sub-order-text .sub-order-option').hide();
             $('.career-price .career-price-cost').hide();
+
+            $('.overlay-layer').off('click');
+            $('.sub-order-btn-cancel').off('click');
+
+            $('.overlay-layer, .sub-order-btn-cancel').on('click', function () {
+                careerController.flushCareer();
+                close();
+            });
         }
+        else {
+            // 옵션 여러개
+            optionBarsDisplay();
 
-        // 옵션 여러개
-        optionBarsDisplay();
-
-        optionEventAttach();
-        itemEventAttach();
+            optionEventAttach();
+            itemEventAttach();
+        }
 
         careerController.setCareer();
     });
+}
+
+function oneOptionItem() {
+    careerController.insert(level, 0);
 }
 
 function optionBarsDisplay() {

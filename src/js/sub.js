@@ -17,7 +17,7 @@ $.ajax({
     }
 });
 
-var optionList = {
+var optionList2 = {
     id: 614330,
     deliveryPrice: 0,
     list: [{
@@ -53,13 +53,13 @@ var optionList = {
     }]
 };
 
-var optionList2 = { // 옵션 1개 모델
+var optionList = { // 옵션 1개 모델
     id: 614330,
     deliveryPrice: 2500,
     list: [{
-        name: 'CAMERA',
+        name: '',
         options: [{
-            name: '',
+            name: 'CAMERA',
             price: 51000
         }]
     }]

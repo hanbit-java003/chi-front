@@ -116,7 +116,7 @@ function setCareerEvent() {
 }
 
 function totalPriceCount() {
-    totalPrice = 0;
+    totalPrice = optionList.deliveryPrice;
     for (var i = 0; i < career.length; i++) {
         var option = career[i];
         totalPrice += option.priceCount;
@@ -124,8 +124,13 @@ function totalPriceCount() {
     $('.career-total-price').text(totalPrice.toLocaleString() + '원');
 }
 
+function flushCareer() {
+    career = [];
+}
+
 module.exports = {
     init: init,
     insert: insert,
-    setCareer:setCareer
+    setCareer: setCareer,
+    flushCareer: flushCareer
 };
