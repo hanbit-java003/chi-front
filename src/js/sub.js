@@ -17,43 +17,16 @@ $.ajax({
     }
 });
 
-var optionList2 = {
-    id: 614330,
-    deliveryPrice: 0,
-    list: [{
-        name: '디자인선택',
-        options: [{
-            name: '스윈팔찌',
-            price: 51000
-        }, {
-            name: '앤드팔찌',
-            price: 51000
-        }]
-    }, {
-        name: '사이즈선택',
-        options: [{
-            name: '1cm',
-            price: 100
-        }, {
-            name: '2cm',
-            price: 200
-        }, {
-            name: '3cm',
-            price: 300
-        }]
-    }, {
-        name: '색상선택',
-        options: [{
-            name: '파랑',
-            price: 0
-        }, {
-            name: '빨강',
-            price: 0
-        }]
-    }]
-};
+$.ajax({
+    url: '/chi_makers/api/makers/option/' + id,
+    success: function (result) {
+        optionList = result;
+    }
+});
 
-var optionList = { // 옵션 1개 모델
+var optionList = {};
+
+var optionList2 = { // 옵션 1개 모델
     id: 614330,
     deliveryPrice: 2500,
     list: [{
