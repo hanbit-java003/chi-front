@@ -33,13 +33,13 @@ var optionList = {
         name: '사이즈선택',
         options: [{
             name: '1cm',
-            price: 0
+            price: 100
         }, {
             name: '2cm',
-            price: 0
+            price: 200
         }, {
             name: '3cm',
-            price: 0
+            price: 300
         }]
     }, {
         name: '색상선택',

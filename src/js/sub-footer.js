@@ -34,7 +34,7 @@ function init(_optionList) {
         });
         $('.sub-order-btn-cancel').on('click', close);
 
-        // 옵션 1개인 경우 ~~보류
+        // 옵션 1개인 경우~~보류
         if (optionList.list.length === 1) { // option 1개인 경우 UI
             $('.sub-order-text .sub-order-option').hide();
             $('.career-price .career-price-cost').hide();
@@ -45,6 +45,8 @@ function init(_optionList) {
 
         optionEventAttach();
         itemEventAttach();
+
+        careerController.setCareer();
     });
 }
 
@@ -138,6 +140,9 @@ function close() {
             $('.sub-order-layer').remove();
             $('.overlay-layer').remove();
             $('body').css('overflow', 'auto');
+
+            level = 0;
+            optionBarsDisplay();
         }
     });
 }

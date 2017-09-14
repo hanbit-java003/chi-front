@@ -17,7 +17,7 @@ function init(_optionList) {
 function insert(_level, index) {
     var level = Number(_level);
 
-    var name = optionList.list[level].options[index].name;
+    var name = optionList.list[level].options[index];
     if (optionStack.length === listCnt && level === listCnt -1) {
         optionStack.pop();
     }
@@ -28,19 +28,30 @@ function insert(_level, index) {
     }
 
     optionStack.push(name);
-    var str = '';
+    var item = {
+        str: '',
+        price: 0,
+        count: 1,
+        priceCount: 0
+    };
     for (var i=0; i<optionStack.length; i++) {
-        str += optionStack[i] + ' ';
+        if (i === optionStack.length -1) {
+            item.str += optionStack[i].name + ' ';
+        }
+        else {
+            item.str += optionStack[i].name + ', ';
+        }
+        item.price += Number(optionStack[i].price);
     }
 
     if (optionStack.length === listCnt && level === listCnt -1) {
-        if (career.indexOf(str) !== -1) {
+        if (_.some(career, {str: item.str})) {
             alert('이미 상품을 선택하셨습니다.');
         }
         else {
-            career.push(str);
-            console.log(str);
-            //setCareer(); // set - 개체 변할 때마다 새로 만드는게 편하다 - 정신건장에 좋음
+            item.priceCount = item.price * item.count;
+            career.push(item);
+            setCareer(); // set - 개체 변할 때마다 새로 만드는게 편하다 - 정신건장에 좋음
         }
     }
 }
@@ -49,7 +60,7 @@ function setCareer() {
     $('.sub-order-career').empty();
 
     var template = require('../template/sub-order-career-item.hbs');
-    var html = template(careerItems); // 하나씩 넣는 것보다 한꺼번에 넣는게 편하다.
+    var html = template(career); // 하나씩 넣는 것보다 한꺼번에 넣는게 편하다.
     $('.sub-order-career').append(html);
 
     setCareerEvent(); // 새로 만든 개체에 이벤트 걸자
@@ -60,7 +71,7 @@ function setCareerEvent() {
     $('.career-price-amount .mk-btn').on('click', function () {
         var li = $(this).parents('li');
         var index = li.index();
-        var option = careerItems[index];
+        var option = career[index];
 
         if ($(this).hasClass('amount-minus')) {
             option.count--;
@@ -91,7 +102,7 @@ function setCareerEvent() {
             }, {
                 duration: 500,
                 complete: function () {
-                    _.remove(careerItems, function(value, n) { // 홈페이지는 n 밖에 없지만, 파라미터 비교 대상과 n 같이 쓰자
+                    _.remove(career, function(value, n) { // 홈페이지는 n 밖에 없지만, 파라미터 비교 대상과 n 같이 쓰자
                         return index === n; // remove - === 3개 씀 (홈페이지 2개로 되있지만)
                     });
 
@@ -106,21 +117,15 @@ function setCareerEvent() {
 
 function totalPriceCount() {
     totalPrice = 0;
-    for (var i=0; i<careerItems.length; i++) {
-        var option = careerItems[i];
-        totalPrice += option.price * option.count;
+    for (var i = 0; i < career.length; i++) {
+        var option = career[i];
+        totalPrice += option.priceCount;
     }
     $('.career-total-price').text(totalPrice.toLocaleString() + '원');
 }
 
-function hasCareerItems() {
-    if (careerItems.length > 0) {
-        return true;
-    }
-    return false;
-}
-
 module.exports = {
     init: init,
-    insert: insert
+    insert: insert,
+    setCareer:setCareer
 };
