@@ -37,8 +37,11 @@ function init(_optionList) {
         // 옵션 1개인 경우~~보류
         if (optionList.list.length === 1) { // option 1개인 경우 UI
             oneOptionItem();
+
             $('.sub-order-text .sub-order-option').hide();
-            $('.career-price .career-price-cost').hide();
+            setTimeout(function () {
+                $('.career-price .career-price-cost').hide();
+            }, 100); // 애니매이션 등 늦게 동작해서 hide가 안먹는다. - 해결
 
             $('.overlay-layer').off('click');
             $('.sub-order-btn-cancel').off('click');
