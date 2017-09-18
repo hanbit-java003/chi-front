@@ -14,7 +14,8 @@ _.move = require('lodash-move').default;
 var model = {
     imgs: [],
     infos: [],
-    schedules: []
+    schedules: [],
+    options: [] // 배열이라고 선언하지 않으면 length 없다고
 };
 
 var slides = [];
@@ -298,13 +299,13 @@ function init() {
         $('.hta-delete').hide();
     }
 
-    if (model.mainImg) {
+    if (id) {
         $('#hta-mk-imgs-main-preview > li').css({
             'background-image': 'url(' + model.mainImg + ')',
         });
     }
 
-    if (model.imgs) {
+    if (id) {
         model.imgs.forEach(function (img) {
             var url = img.img;
             addPreview(url, true);

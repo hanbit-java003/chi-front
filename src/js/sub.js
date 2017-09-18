@@ -13,18 +13,22 @@ $.ajax({
     url: '/chi_makers/api/makers/detail/' + id,
     method: 'POST',
     success: function (result) {
-        initMakers(result);
+
+        // ajax - initMakers 실행 순서 때문에 optionList가 동작하지 않는다. - %주의%
+        $.ajax({
+            url: '/chi_makers/api/makers/option/' + id,
+            success: function (result2) {
+                optionList = result2;
+                initMakers(result);
+            }
+        });
     }
 });
 
-$.ajax({
-    url: '/chi_makers/api/makers/option/' + id,
-    success: function (result) {
-        optionList = result;
-    }
-});
 
-var optionList = {};
+var optionList = {
+    list: [] // list가 배열이라고 선언하지 않으면 length 없다고 에러남
+};
 
 var optionList2 = { // 옵션 1개 모델
     id: 614330,
