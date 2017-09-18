@@ -1,6 +1,7 @@
 require('../less/sub-footer.less');
 var careerController = require('../js/sub-career-tab');
 
+var id = 0;
 var optionList = {
     list: []
 };
@@ -8,9 +9,21 @@ var optionList = {
 var level = 0;
 var listCnt = 0;
 
-function init(_optionList) {
+function init(_id) {
+    id = _id;
+
+    // ajax - initMakers 실행 순서 때문에 optionList가 동작하지 않는다. - %주의%
+    $.ajax({
+        url: '/chi_makers/api/makers/option/' + id,
+        success: function (result) {
+            optionSet(result);
+        }
+    });
+}
+
+function optionSet(_optionList) {
     optionList = _optionList;
-    careerController.init(_optionList);
+    careerController.init(optionList);
 
     $('.sub-footer-order').on('click', function() {
         $('body').append('<div class="overlay-layer dark-layer"></div>');

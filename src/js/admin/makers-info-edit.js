@@ -14,8 +14,8 @@ _.move = require('lodash-move').default;
 var model = {
     imgs: [],
     infos: [],
-    schedules: [],
-    options: [] // 배열이라고 선언하지 않으면 length 없다고
+    schedules: [], // 배열이라고 선언하지 않으면 length 없다고
+    options: {}
 };
 
 var slides = [];
@@ -319,7 +319,7 @@ function init() {
     mkScheduleTab.init(model.schedules);
 
     var mkOptionTab = require('./mk-option-tab');
-    mkOptionTab.init(model.options);
+    mkOptionTab.init(model.id); // option은 따로 부른다.
 
     orderDaySetting();
 }

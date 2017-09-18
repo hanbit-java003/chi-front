@@ -1,16 +1,54 @@
-<tr>
-    <td>{{no}}</td>
-    <td>{{name}}</td>
-    <td>{{format price}}</td>
-    <td>
-        <button class="hta-btn-row hta-up-row btn btn-xs">
-            위로
+<div class="sub-option-fee">
+    <input type="checkbox" value="fee"> 배송비를 추가합니다.
+    <div class="sub-option-fee-input">
+        <input type="number"  placeholder="" value="">
+        <span>(0원 이면 체크를 해제해주세요.)</span>
+    </div>
+</div>
+<div class="sub-option-category">
+    <div class="hta-option-category-add">
+        <button>
+            <i class="fa fa-plus"></i>
         </button>
-        <button class="hta-btn-row hta-down-row btn btn-xs">
-            아래로
+        카테고리 추가
+    </div>
+    <div class="sub-option-category-del">
+        카테고리 삭제
+        <button>
+            <i class="fa fa-minus"></i>
         </button>
-        <button class="hta-btn-row hta-remove-row btn btn-xs btn-danger">
-            삭제
-        </button>
-    </td>
-</tr>
+    </div>
+    <div class="sub-option-category-list">
+        1. 카테고리 이름 : <input type="text">
+        <div class="sub-option-category-list-button">
+            <div class="category-list-add">
+                <button>
+                    <i class="fa fa-plus"></i>
+                </button>
+                옵션 추가
+            </div>
+            <div class="category-list-del">
+                <button>
+                    <i class="fa fa-minus"></i>
+                </button>
+                옵션 삭제
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>이름</th>
+                <th>가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td><input type="text" value="빨강"></td>
+                <td><input type="number" value="2500"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

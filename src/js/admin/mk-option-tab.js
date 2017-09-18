@@ -1,24 +1,46 @@
-var options = [];
+var id;
 
-function init(_options) {
-    options = _options;
-    setOptions();
+var options = {
+    list: []
+};
 
-    $('[tab-id=option] .hta-add-row').on('click', function() {
-        options.push({
-            name: '이름',
-            price: 0
+function init(_id) {
+    id = _id;
+
+    if (true) {
+        options = optionList2;
+    }
+    else {
+        $.ajax({
+            url: '/chi_makers/api/makers/option/' + id,
+            success: function (result) {
+                options = result;
+            }
         });
-
-        setOptions();
-    });
+    }
+    setOptions();
 }
 
+var optionList2 = { // 옵션 1개 모델
+    id: 614330,
+    deliveryPrice: 2500,
+    list: [{
+        name: '',
+        options: [{
+            name: 'CAMERA',
+            price: 51000
+        }]
+    }]
+};
+
 function setOptions() {
-    $('.hta-mk-option tbody').empty();
+    $('.hta-tab-contents li[tab-id=option]').empty();
 
     var template = require('../../template/admin/mk-option.hbs');
+    var html = template();
+    $('.hta-tab-contents li[tab-id=option]').append(html);
 
+/*
     for (var i=0; i<options.length; i++) {
         options[i].no = i + 1;
         var html = template(options[i]);
@@ -26,7 +48,7 @@ function setOptions() {
         $('.hta-mk-option tbody').append(html);
     }
 
-    addAreaOptionEvents();
+    addAreaOptionEvents();*/
 }
 
 function addAreaOptionEvents() {
