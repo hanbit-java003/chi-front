@@ -1,25 +1,26 @@
 <div class="sub-option-fee">
-    <input type="checkbox" value="fee"> 배송비를 추가합니다.
+    <input id="checkboxId" type="checkbox" value="fee"> 배송비를 추가합니다.
     <div class="sub-option-fee-input">
-        <input type="number"  placeholder="" value="">
+        <input type="number"  placeholder="" value="{{deliveryPrice}}">
         <span>(0원 이면 체크를 해제해주세요.)</span>
     </div>
 </div>
 <div class="sub-option-category">
-    <div class="hta-option-category-add">
+    <div class="sub-option-category-add">
         <button>
             <i class="fa fa-plus"></i>
         </button>
         카테고리 추가
     </div>
     <div class="sub-option-category-del">
-        카테고리 삭제
         <button>
             <i class="fa fa-minus"></i>
         </button>
+        카테고리 삭제
     </div>
+    {{#each list}}
     <div class="sub-option-category-list">
-        1. 카테고리 이름 : <input type="text">
+        {{no}}. 카테고리 이름 : <input type="text" value="{{name}}">
         <div class="sub-option-category-list-button">
             <div class="category-list-add">
                 <button>
@@ -36,19 +37,22 @@
         </div>
         <table class="table">
             <thead>
-            <tr>
-                <th>No</th>
-                <th>이름</th>
-                <th>가격</th>
-            </tr>
+                <tr>
+                    <th>No</th>
+                    <th>이름</th>
+                    <th>가격</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td><input type="text" value="빨강"></td>
-                <td><input type="number" value="2500"></td>
-            </tr>
+            {{#each options}}
+                <tr>
+                    <td>{{no1}}</td>
+                    <td><input type="text" value="{{name}}"></td>
+                    <td><input type="number" value="{{price}}"></td>
+                </tr>
+            {{/each}}
             </tbody>
         </table>
     </div>
+    {{/each}}
 </div>

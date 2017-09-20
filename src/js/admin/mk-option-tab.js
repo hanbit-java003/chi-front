@@ -7,113 +7,97 @@ var options = {
 function init(_id) {
     id = _id;
 
-    if (true) {
-        options = optionList2;
-    }
-    else {
-        $.ajax({
-            url: '/chi_makers/api/makers/option/' + id,
-            success: function (result) {
-                options = result;
-            }
-        });
-    }
-    setOptions();
+    $.ajax({
+        url: '/chi_makers/api/makers/option/' + id,
+        success: function (result) {
+            options = result;
+            setOptions();
+        }
+    });
 }
-
-var optionList2 = { // 옵션 1개 모델
-    id: 614330,
-    deliveryPrice: 2500,
-    list: [{
-        name: '',
-        options: [{
-            name: 'CAMERA',
-            price: 51000
-        }]
-    }]
-};
 
 function setOptions() {
     $('.hta-tab-contents li[tab-id=option]').empty();
 
-    var template = require('../../template/admin/mk-option.hbs');
-    var html = template();
-    $('.hta-tab-contents li[tab-id=option]').append(html);
-
-/*
-    for (var i=0; i<options.length; i++) {
-        options[i].no = i + 1;
-        var html = template(options[i]);
-
-        $('.hta-mk-option tbody').append(html);
+    for (var i = 0; i < options.list.length; i++) {
+        var list = options.list[i];
+        list.no = i + 1;
+        for (var j = 0; j < list.options.length; j++) {
+            var optionsArr = list.options[j];
+            optionsArr.no1 = j + 1;
+        }
     }
 
-    addAreaOptionEvents();*/
+    var template = require('../../template/admin/mk-option.hbs');
+    var html = template(options);
+    $('.hta-tab-contents li[tab-id=option]').append(html);
+
+    // mk-option.hbs 이 생성되고 이벤트를 줘야한다. %위치 중요%
+    if (options.deliveryPrice) {
+        $('#checkboxId').attr('checked', true);
+        $('.sub-option-fee-input').show();
+    }
+
+    $('#checkboxId').on('change', function() {
+        if (this.checked) {
+            $('.sub-option-fee-input').show();
+        }
+        else {
+            $('.sub-option-fee-input').hide();
+        }
+    });
+
+    addCategoryEvents();
 }
 
-function addAreaOptionEvents() {
-    addBtnRowEvents();
+function addCategoryEvents() {
+    addOptionsTableEvents();
 
-    $('.hta-mk-option tbody tr').off('dblclick');
-    $('.hta-mk-option tbody tr').on('dblclick', function() {
-        var row = $(this);
-        var rowIndex = $(this).index();
-        var option = options[rowIndex];
-        option.name = option.name.replace(/<br>/g, '\n');
-        var template = require('../../template/admin/mk-option-edit.hbs');
-        var html = template(option);
+    $('.sub-option-category-add > button').off('click');
+    $('.sub-option-category-add > button').on('click', function() {
+        var no = {no: $('.sub-option-category-list').length + 1};
 
-        row.replaceWith(html);
+        var template = require('../../template/admin/mk-option-category-add.hbs');
+        var html = template(no);
 
-        addBtnRowEvents();
+        $('.sub-option-category').append(html);
+        addOptionsTableEvents();
+    });
+
+    $('.sub-option-category-del > button').off('click');
+    $('.sub-option-category-del > button').on('click', function() {
+        var list = $('.sub-option-category-list');
+        var l = list.length;
+        if (l > 1) {
+            $(list[l-1]).remove();
+        }
     });
 }
 
-function addBtnRowEvents() {
-    $('.hta-mk-option .hta-btn-row').off('click');
-    $('.hta-mk-option .hta-btn-row').on('click', function() {
-        var row = $(this).parents('tr');
+function addOptionsTableEvents() {
+    $('.category-list-add').off('click');
+    $('.category-list-add').on('click', function () {
+        var row = $(this).parents('.sub-option-category-list'); // class가 아닌 태그의 수 즉 div의 수를 센다
+        var rowIndex = row.index(); // 처음이 그래서 0이 아닌 2가 된다.
+
+        var tbody = $('.sub-option-category-list > table > tbody')[rowIndex - 2];
+
+        var no1 = {no1: $(tbody).children('tr').length + 1};
+        var template = require('../../template/admin/mk-options-table-add.hbs');
+        var html = template(no1);
+        $(tbody).append(html);
+    });
+
+    $('.category-list-del').off('click');
+    $('.category-list-del').on('click', function () {
+        var row = $(this).parents('.sub-option-category-list');
         var rowIndex = row.index();
-        var option = options[rowIndex];
 
-        if ($(this).hasClass('hta-apply-row')) {
-            option.name = row.find('.hta-mk-option-name').val().replace(/\n/g, '<br>').trim();
-            option.price = row.find('.hta-mk-option-price').val().trim();
+        var tbody = $('.sub-option-category-list > table > tbody')[rowIndex - 2];
+        var l = $(tbody).children('tr').length;
+        if (l > 1) {
+            $(tbody).children('tr')[l - 1].remove();
         }
-        else if ($(this).hasClass('hta-remove-row')) {
-            _.remove(options, function(value, n) {
-                return rowIndex === n;
-            });
-
-            setOptions();
-            return;
-        }
-        else if ($(this).hasClass('hta-up-row')) {
-            if (rowIndex < 1) {
-                return;
-            }
-
-            options = _.move(options, rowIndex, rowIndex - 1);
-
-            setOptions();
-            return;
-        }
-        else if ($(this).hasClass('hta-down-row')) {
-            if (rowIndex >= options.length - 1) {
-                return;
-            }
-
-            options = _.move(options, rowIndex, rowIndex + 1);
-
-            setOptions();
-            return;
-        }
-
-        var template = require('../../template/admin/mk-option.hbs');
-        var html = template(option);
-        row.replaceWith(html);
-
-        addAreaOptionEvents();
     });
 }
 
